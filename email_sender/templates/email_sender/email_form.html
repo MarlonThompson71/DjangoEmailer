@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marlon Mail</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
+
+      /* Variables */
+      :root {
+        --bg: url("https://unsplash.com/photos/BlIhVfXbi9s/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTZ8fHdhbGx8ZW58MHx8fHwxNzEyNDk4NTgzfDA&force=true");
+        --form-bg: #005450;
+        --form-shadow: #ffa580;
+        --form-primary-highlight: #95a4ff;
+        --form-secondary-highlight: #ffc8ff;
+        --font-size: 14pt;
+        --font-face: "Fjalla One";
+        --font-color: #2a293e;
+      }
+
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      h2 {
+        display: block;
+        margin: 0 auto;
+        line-height: calc(var(--font-size) * 2);
+        padding: 0 20px;
+        background: var(--form-shadow);
+        letter-spacing: 2px;
+        transition: 0.2s all ease-in-out;
+        outline: none;
+        border: 1px solid rgba(0, 0, 0, 1);
+        box-shadow: 3px 3px 1px 1px var(--form-primary-highlight),
+          3px 3px 1px 2px rgba(0, 0, 0, 1);
+      }
+      h1 {
+        font-family: monospace;
+        color: white;
+        display: block;
+        margin: 0 auto;
+        line-height: calc(var(--font-size) * 2);
+        padding: 0 20px;
+        background: #005450;
+        letter-spacing: 2px;
+        transition: 0.2s all ease-in-out;
+        outline: none;
+        border: 1px solid rgba(0, 0, 0, 1);
+        box-shadow: 3px 3px 1px 1px white, 3px 3px 1px 2px rgba(0, 0, 0, 1);
+      }
+      .container {
+        background-color: var(--form-bg);
+        padding: 20px;
+        border-radius: 10px;
+
+        border: 4px solid;
+      }
+
+      body {
+        background: var(--bg) center center no-repeat;
+        background-size: cover;
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+      }
+
+      .contact-us {
+        background: var(--form-bg);
+        padding: 50px 100px;
+        border: 2px solid rgba(0, 0, 0, 1);
+        box-shadow: 15px 15px 1px var(--form-shadow),
+          15px 15px 1px 2px rgba(0, 0, 0, 1);
+      }
+
+      input {
+        display: block;
+        width: 100%;
+        font-size: var(--font-size);
+        line-height: calc(var(--font-size) * 2);
+        font-family: "Karla", Helvetica, Arial, sans-serif;
+        margin-bottom: calc(var(--font-size) * 2);
+        background-color: #005450;
+        min-width: 250px;
+        padding-left: 5px;
+        outline: none;
+        color: white;
+      }
+
+      input:focus {
+      }
+      ::placeholder {
+        color: light-grey;
+      }
+      button {
+        display: block;
+        margin: 0 auto;
+        line-height: calc(var(--font-size) * 2);
+        padding: 15px 40px;
+        background: white;
+        color: #005450;
+        letter-spacing: 1px;
+        transition: 0.2s all ease-in-out;
+        outline: none;
+        border: 3px solid rgba(0, 0, 0, 1);
+
+        font-size: 20px;
+        font-weight: 700;
+        min-width: 200px;
+        border-radius: 25px; /* Adjust the value to change the roundness */
+      }
+
+      button:hover {
+        font-family: monospace;
+        background: grey;
+        color: white;
+        border: 1px solid rgba(0, 0, 0, 1);
+      }
+
+      ::selection {
+        background: var(--form-secondary-highlight);
+      }
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus {
+        border-bottom: 5px solid var(--form-primary-highlight);
+        -webkit-text-fill-color: var(--font-color);
+        -webkit-box-shadow: 0 0 0px 1000px var(--form-bg) inset;
+        transition: background-color 5000s ease-in-out 0s;
+      }
+
+      textarea {
+        background-color: #005450;
+        color: white;
+
+        padding: 5px;
+        height: 100;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      label {
+        font-family: monospace;
+        font-size: 15px;
+        color: white;
+      }
+      .file {
+        color: white;
+      }
+      img {
+        width: 40%;
+        max-width: 200px;
+        display: block; /* Ensure the image behaves as a block element */
+        margin: 0 auto; /* Center the image horizontally */
+        border: 3px solid rgba(0, 0, 0, 1);
+      }
+      h3 {
+        color: white;
+        font-family: monospace;
+        text-align: center; /* Center align the text */
+        
+      }
+      
+    </style>
+  </head>
+  <body>
+    <br />
+    <br />
+
+    <div class="container">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <img src="{% static 'logo.jpg' %}" />
+        <h3>Marlon Mail<h3/>
+        <div>
+          <br />
+
+          <label for="sender"></label><br />
+          <input
+            type="email"
+            id="sender"
+            name="sender"
+            required
+            placeholder="Sender"
+          />
+        </div>
+        <div>
+          <input
+            type="email"
+            id="receiver"
+            name="receiver"
+            required
+            placeholder="Recipients"
+          />
+        </div>
+        <div>
+          <input type="email" id="cc" name="cc" placeholder="cc" />
+        </div>
+        <div>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            required
+            placeholder="Subject"
+          />
+        </div>
+        <div>
+          <textarea id="body" name="body" rows="5" required></textarea>
+        </div>
+        <div>
+          <input class="file" type="file" id="attachment" name="attachment" />
+          <button type="submit">Send</button>
+        </div>
+        <div></div>
+      </form>
+    </div>
+  </body>
+</html>

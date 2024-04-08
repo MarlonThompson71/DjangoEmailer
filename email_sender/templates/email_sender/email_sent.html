@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marlon Mail</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
+
+      /* Variables */
+      :root {
+        --bg: url("https://unsplash.com/photos/BlIhVfXbi9s/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTZ8fHdhbGx8ZW58MHx8fHwxNzEyNDk4NTgzfDA&force=true");
+        --form-bg: #005450;
+        --form-shadow: #ffa580;
+        --form-primary-highlight: #95a4ff;
+        --form-secondary-highlight: #ffc8ff;
+        --font-size: 14pt;
+        --font-face: "Fjalla One";
+        --font-color: #2a293e;
+      }
+
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+     
+      h2 {
+        
+        color: white;
+        display: block;
+        margin: 0 auto;
+        line-height: calc(var(--font-size) * 2);
+        padding: 0 20px;
+        background: #005450;
+        letter-spacing: 2px;
+        transition: 0.2s all ease-in-out;
+       
+        
+      }
+      .container {
+        background-color: var(--form-bg);
+        padding: 40px; /* Increase the padding to add more space */
+        border-radius: 10px;
+        border: 4px solid;
+      }
+      
+
+      body {
+        background: var(--bg) center center no-repeat;
+        background-size: cover;
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+      }
+
+      textarea {
+        background-color: #005450;
+        color: white;
+
+        padding: 5px;
+        height: 100;
+        width: 100%;
+        
+      }
+      label {
+        font-family: monospace;
+        font-size: 15px;
+        color: white;
+      }
+      .file {
+        color: white;
+      }
+      img {
+        width: 40%;
+        max-width: 200px;
+        display: block; /* Ensure the image behaves as a block element */
+        margin: 0 auto; /* Center the image horizontally */
+        
+      }
+      h3 {
+        color: white;
+        font-family: monospace;
+        text-align: center; /* Center align the text */
+        
+      }
+      
+    </style>
+  </head>
+  <body>
+    <br />
+    <br />
+
+    <div class="container">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <img src="{% static 'logo.jpg' %}" />
+        <h3>Marlon Mail<h3/>
+        <br>
+        <br>
+        <div class="email-details">
+          <h2>Sender: {{ sender }}</h2>
+         
+          <br>
+          <h2>Receiver: {{ receiver }}</h2>
+          <br />
+          <h2>Subject: {{ subject }}</h2>
+          <br />
+          <h2>Body: {{ body }}</h2>
+          <br />
+          {% if attachment %}
+          <h2>{{ attachment.name }}</h2>
+          <img src="{{ attachment.url }}" alt="Attached Image" />
+          {% endif %}
+        </div>
+  </body>
+</html>
+
