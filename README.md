@@ -1,5 +1,5 @@
 # DjangoEmailer
-Email Application that utilizes smtp . Once 
+Email Application that uses utilizes smtp to send an email based on the data submitted through a form . Once 
             smtp_server = 'your smtp email server'
             smtp_port = 587
             smtp_username = 'YOUR EMAIL ADDRESS'
